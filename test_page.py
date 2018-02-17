@@ -1,3 +1,6 @@
+from counter_page import CounterPage
+
+
 def test_example(selenium):
  	selenium.get('http://localhost:3000')
  	assert selenium.title == 'Portal link'
@@ -9,6 +12,16 @@ def test_example(selenium):
  		assert counter.text == str(x)
  		button.click()
  	assert	counter.text == '10'
- 	
 
+
+def test_example_page(selenium):
+	page = CounterPage(selenium)
+	page.open()
+	assert selenium.current_url == 'http://localhost:3000/'
+	assert page.counter.text == '0'
+	
+	for x in range(10):
+ 		assert page.number == str(x)
+ 		page.plus_one()
+	assert	page.counter.text == '10'
 
