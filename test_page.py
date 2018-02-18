@@ -1,4 +1,5 @@
 from counter_page import CounterPage
+from contact_page import ContactPage
 
 
 def test_example(selenium):
@@ -31,6 +32,35 @@ def test_location_counter(selenium):
 	page = CounterPage(selenium)
 	page.open()
 	assert page.location.text == "/counter"
+
+
+def test_location_contacts(selenium):
+	page = ContactPage(selenium)
+	page.open()
+	assert page.location.text == '/contacts'
+
+
+def test_form(selenium):
+	page = ContactPage(selenium)
+	page.open()
+	page.name.send_keys('ivan')
+	page.email.send_keys('email.com')
+	assert page.name.get_attribute('value')=='ivan'
+	assert page.email.get_attribute('value')=='email.com'
+
+def test_form_add(selenium):
+	page = ContactPage(selenium)
+	page.open()
+	page.name.send_keys('ivan')
+	page.email.send_keys('email.com')
+	page.button.click()
+	assert page.name.get_attribute('value')==''
+	assert page.email.get_attribute('value')==''
+
+
+
+
+			
 			
 
 
