@@ -5,7 +5,7 @@ class CounterPage(object):
 		self.selenium = selenium
 
 	def open(self):
-		self.selenium.get('http://localhost:3000')
+		self.selenium.get('http://localhost:3000/counter')
     
 	@property
 	def counter(self):
@@ -21,3 +21,7 @@ class CounterPage(object):
 	@property
 	def number(self):
 		return self.counter.text
+
+	@property
+	def location(self):
+		return self.selenium.find_element_by_css_selector(".App-pathname i")	
