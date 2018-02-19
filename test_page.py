@@ -57,6 +57,21 @@ def test_form_add(selenium):
 	assert page.name.get_attribute('value')==''
 	assert page.email.get_attribute('value')==''
 
+def test_contact_add(selenium):
+	page = ContactPage(selenium)
+	page.open()
+	assert not page.contacts
+	page.add('ivan', 'gmail.com')
+	assert len(page.contacts)==1
+	assert page.contact_name.text=='ivan'
+	assert page.contact_email.text=="gmail.com"
+
+	
+	
+
+
+
+
 
 
 

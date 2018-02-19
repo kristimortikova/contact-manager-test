@@ -15,4 +15,16 @@ class ContactPage(object):
 	button=selector('button#add')
 	
 	location=selector(".App-pathname i")
+
+	contact_name=selector(".Contact-name")
+
+	contact_email=selector(".Contact-email")
+
+	contacts=selector(".Contact", many=True)
+
+	def add(self, name, email):
+		self.name.send_keys(name)
+		self.email.send_keys(email)
+		self.button.click()
+		
 	
