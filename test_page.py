@@ -63,8 +63,29 @@ def test_contact_add(selenium):
 	assert not page.contacts
 	page.add('ivan', 'gmail.com')
 	assert len(page.contacts)==1
-	assert page.contact_name.text=='ivan'
-	assert page.contact_email.text=="gmail.com"
+	assert list(page.names)==['ivan']
+	#assert page.contact_email.text=="gmail.com"
+
+def test_contact_add2(selenium):
+	page = ContactPage(selenium)
+	page.open()
+	page.add('ivan', 'gmail.com')
+	page.add('sergey', 'email.com')
+	assert list (page.names)==['ivan', 'sergey']
+	assert list(page.emails)==['gmail.com', 'email.com']
+
+def test_contact_add100(selenium):
+	page = ContactPage(selenium)
+	page.open()
+	names100=list(map(lambda x: 'ivan_{}'.format(x), range(100)))
+	emails100=list(map(lambda x: 'gmail.com_{}'.format(x), range(100)))
+	for (name, email) in zip(names100,emails100):
+		page.add(name, email)
+	assert list(page.names)==names100
+	assert list(page.emails)==emails100	
+
+
+
 
 	
 	
